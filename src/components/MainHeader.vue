@@ -11,6 +11,15 @@
           <p>{{film.vote_average}}</p>
         </li>
       </ul>
+
+      <ul>
+        <li v-for="series in tv" :key="series.id">
+          <h3>{{series.original_title}}</h3>
+          <p>{{series.title}}</p>
+          <p><img src="./it.png" alt=""></p>
+          <p>{{series.vote_average}}</p>
+        </li>
+      </ul>
     </div>
 
   </div>
@@ -27,6 +36,7 @@ export default {
   },
   props: {
     film: Array,
+    tv: Array,
 
   },
   methods: {
@@ -34,22 +44,22 @@ export default {
       axios.get(`${state.baseUri}/search/movie?api_key=${state.apikey}&query=${this.query}&language=it-IT`)
         .then((res) => {
           state.movies = res.data.results
-          console.log('movies:',state.movie)
+          // console.log('movies:', state.movie)
         })
     },
   },
- 
-  computed: {
-    movies() {
-      return state.movies
 
-
-    },
-
+  searchTv() {
+    axios.get(`${state.baseUri}/search/tv?api_key=${state.apikey}&query=${this.query}&language=it-IT`)
+      .then((res) => {
+        state.tv = res.data.results
+        console.log('series:', state.movie)
+      })
   },
 
+
 }
-console.log(state.movies)
+console.log(state.tv)
 </script>
   
   <!-- Add "scoped" attribute to limit CSS to this component only -->
