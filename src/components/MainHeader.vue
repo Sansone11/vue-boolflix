@@ -11,6 +11,15 @@
           <p>{{film.vote_average}}</p>
         </li>
       </ul>
+
+      <ul>
+        <li v-for="series in movies" :key="series.id">
+          <h3>{{series.original_title}}</h3>
+          <p>{{series.title}}</p>
+          <p><img src="./it.png" alt=""></p>
+          <p>{{series.vote_average}}</p>
+        </li>
+      </ul>
       
     </div>
 
@@ -24,10 +33,12 @@ export default {
   data() {
     return {
       query: "",
+
     }
   },
   props: {
     film: Array,
+    series: Array
 
   },
   methods: {
@@ -38,6 +49,14 @@ export default {
           console.log('movies:',state.movie)
         })
     },
+
+    searchTv() {
+      axios.get(`${state.baseUri}/search/tv?api_key=${state.apikey}&query=${this.query}&language=it-IT`)
+        .then((res) => {
+          state.tv = res.data.results
+          console.log('series:',state.tv)
+        })
+    },
   },
  
   computed: {
@@ -46,6 +65,10 @@ export default {
 
 
     },
+
+  serie(){
+    return state.tv
+  }
 
   },
 
