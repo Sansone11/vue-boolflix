@@ -6,6 +6,7 @@
       <ul>
         <li v-for="film in movies" :key="film.id">
           <h3>{{film.original_title}}</h3>
+          <img :src="`${UriImg}${film.poster_path}`" alt="">
           <p>{{film.title}}</p>
           <p><img src="./it.png" alt=""></p>
           <p>{{film.vote_average}}</p>
@@ -15,6 +16,7 @@
       <ul>
         <li v-for="series in serie" :key="series.id">
           <h3>{{series.original_name}}</h3>
+          <img :src="`${UriImg}${series.poster_path}`" alt="">
           <p>{{series.name}}</p>
           <p><img src="./it.png" alt=""></p>
           <p>{{series.vote_average}}</p>
@@ -36,11 +38,7 @@ export default {
 
     }
   },
-  // props: {
-  //   film: Array,
-  //   series: Array
 
-  // },
   methods: {
     searchMovies() {
       axios.get(`${state.baseUri}/search/movie?api_key=${state.apikey}&query=${this.query}&language=it-IT`)
@@ -58,7 +56,7 @@ export default {
         })
     },
 
-    searchAll(){
+    searchAll() {
       this.searchTv()
       this.searchMovies()
 
@@ -74,12 +72,14 @@ export default {
 
     serie() {
       return state.tv
+    },
+    UriImg() {
+      return state.imgUri
     }
-
   },
 
 }
-console.log(state.tv)
+console.log(state.imgUri)
 </script>
   
   <!-- Add "scoped" attribute to limit CSS to this component only -->
