@@ -6,5 +6,4 @@ const state = Vue.observable({
     query:'',
     baseUri:'https://api.themoviedb.org/3'
 });
-
 export default state;
