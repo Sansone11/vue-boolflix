@@ -1,7 +1,7 @@
 <template>
   <div class="nav">
     <input class="search" type="text" v-model="query">
-    <button @click="searchMovies">Search Movie</button>
+    <button @click="searchAll">Search Movie</button>
     <div>
       <ul>
         <li v-for="film in movies" :key="film.id">
@@ -13,14 +13,14 @@
       </ul>
 
       <ul>
-        <li v-for="series in movies" :key="series.id">
-          <h3>{{series.original_title}}</h3>
-          <p>{{series.title}}</p>
+        <li v-for="series in serie" :key="series.id">
+          <h3>{{series.original_name}}</h3>
+          <p>{{series.name}}</p>
           <p><img src="./it.png" alt=""></p>
           <p>{{series.vote_average}}</p>
         </li>
       </ul>
-      
+
     </div>
 
   </div>
@@ -36,17 +36,17 @@ export default {
 
     }
   },
-  props: {
-    film: Array,
-    series: Array
+  // props: {
+  //   film: Array,
+  //   series: Array
 
-  },
+  // },
   methods: {
     searchMovies() {
       axios.get(`${state.baseUri}/search/movie?api_key=${state.apikey}&query=${this.query}&language=it-IT`)
         .then((res) => {
           state.movies = res.data.results
-          console.log('movies:',state.movie)
+          console.log('movies:', state.movie)
         })
     },
 
@@ -54,11 +54,17 @@ export default {
       axios.get(`${state.baseUri}/search/tv?api_key=${state.apikey}&query=${this.query}&language=it-IT`)
         .then((res) => {
           state.tv = res.data.results
-          console.log('series:',state.tv)
+          console.log('series:', state.tv)
         })
     },
+
+    searchAll(){
+      this.searchTv()
+      this.searchMovies()
+
+    }
   },
- 
+
   computed: {
     movies() {
       return state.movies
@@ -66,14 +72,14 @@ export default {
 
     },
 
-  serie(){
-    return state.tv
-  }
+    serie() {
+      return state.tv
+    }
 
   },
 
 }
-console.log(state.movies)
+console.log(state.tv)
 </script>
   
   <!-- Add "scoped" attribute to limit CSS to this component only -->
