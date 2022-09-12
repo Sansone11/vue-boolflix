@@ -7,7 +7,7 @@
         <li v-for="film in movies" :key="film.id">
           <h3>{{film.original_title}}</h3>
           <p>{{film.title}}</p>
-          <p><img src="./gb-eng.png" alt=""></p>
+          <p><img src="./it.png" alt=""></p>
           <p>{{film.vote_average}}</p>
         </li>
       </ul>
