@@ -53,7 +53,7 @@ export default {
     axios.get(`${state.baseUri}/search/tv?api_key=${state.apikey}&query=${this.query}&language=it-IT`)
       .then((res) => {
         state.tv = res.data.results
-        console.log('series:', state.movie)
+        console.log('series:', state.series)
       })
   },
 
