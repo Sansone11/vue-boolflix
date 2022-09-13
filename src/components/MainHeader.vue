@@ -1,8 +1,12 @@
 <template>
   <div class="nav">
-    <h1>Boolflix</h1>
-    <input class="search" type="text" v-model="query" placeholder="Cosa vuoi guardare...?">
-    <button @click="searchAll">Search Movie</button>
+    <div class="title">
+      <h1>Boolflix</h1>
+    </div>
+    <div class="option">
+      <input class="search" type="text" v-model="query" placeholder="Inserisci un Titolo">
+      <button @click="searchAll">Inizia ricerca</button>
+    </div>
   </div>
 </template>
   
@@ -42,15 +46,37 @@ export default {
     },
     
   },
-
   
- 
-  
-}
-console.log(state.imgUri)
+};
 </script>
   <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+  @import '../assets/style.scss';
+  .nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color:$-bg-navbar-bg;
+    padding: 0px 3rem;
+    h1{
+      color:$-color-write;
+      font-size: 40px;
+    }
+    input,
+    button{
+      background-color: white;
+      border: none;
+      height: 30px;
+      text-align: center;
+    }
+    button{
+      font-weight: bold;
+    }
+    .option{
+      display: flex;
+      gap: 2rem;
+    }
+  }
   
 
 </style>

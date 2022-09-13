@@ -2,17 +2,17 @@
   <div class="container">
     <ul class="card">
       <li v-for="film in movies" :key="film.id">
-        <h3>{{film.original_title}}</h3>
         <img :src="`${UriImg}${film.poster_path}`" alt="">
-        <p>{{film.title}}</p>
+        <p>Titolo: {{film.title}}</p>
+        <h3>Titolo originale: {{film.original_title}}</h3>
         <p><img src="./it.png" alt=""></p>
-        <p>{{roundedValue(film.vote_average)}}</p>
-        <ul>
-          <li v-for="star in roundedValue(film.vote_average) " :key="star">
+        <p>Voto: {{roundedValue(film.vote_average)}}</p>
+        <ul class="vote">
+          <li class="star" v-for="star in roundedValue(film.vote_average) " :key="star">
             <font-awesome-icon icon="fa-solid fa-star" />
           </li>
           <li>
-            <font-awesome-icon v-for="star in (5-roundedValue(film.vote_average))" :key="star + film.vote_average"
+            <font-awesome-icon class="star" v-for="star in (5-roundedValue(film.vote_average))" :key="star + film.vote_average"
               icon="fa-regular fa-star" />
           </li>
         </ul>
@@ -20,18 +20,17 @@
     </ul>
     <ul class="card">
       <li v-for="series in serie" :key="series.id">
-        <h3>{{series.original_name}}</h3>
         <img :src="`${UriImg}${series.poster_path}`" alt="">
-        <p>{{series.name}}</p>
+        <p>Titolo: {{series.name}}</p>
+        <h3>Titolo originale: {{series.original_name}}</h3>
         <p><img src="./it.png" alt=""></p>
-        <p>{{roundedValue(series.vote_average)}}</p>
-        <ul>
-          <li v-for="star in roundedValue(series.vote_average)" :key="star">
+        <p>Voto: {{roundedValue(series.vote_average)}}</p>
+        <ul class="vote">
+          <li class="star" v-for="star in roundedValue(series.vote_average)" :key="star">
             <font-awesome-icon icon="fa-solid fa-star" />
           </li>
           <li>
-            <font-awesome-icon v-for="star in (5-roundedValue(series.vote_average))" :key="star + series.vote_average"
-              icon="fa-regular fa-star" />
+            <font-awesome-icon class="star" v-for="star in (5-roundedValue(series.vote_average))" :key="star + series.vote_average" icon="fa-regular fa-star" />
           </li>
         </ul>
       </li>
@@ -64,5 +63,28 @@ export default {
 
   <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+  @import '../assets/style.scss';
+  ul,li{
+    list-style: none;
+  }
+  .container{
+    width: 100%;
+    background-color:$-bg-main;
+    .card{
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+    }
+    h3,p{
+      color: white;
+    }
+    .star{
+      color:$-star-color;
+    }
+    .vote{
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+      }
+  }
 
 </style>
