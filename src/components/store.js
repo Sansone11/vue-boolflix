@@ -8,9 +8,8 @@ const state = Vue.observable({
     apikey:'87f0771b157e9b64c497826e9e19fe61',
     query:'',
     baseUri:'https://api.themoviedb.org/3',
-    imgUri:'https://image.tmdb.org/t/p/w300/',
-    posterPath:[]
-
+    imgUri:'https://image.tmdb.org/t/p/w342/',
+    posterPath:[],
     
 });
 

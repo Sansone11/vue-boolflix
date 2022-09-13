@@ -1,30 +1,8 @@
 <template>
   <div class="nav">
-    <input class="search" type="text" v-model="query">
+    <h1>Boolflix</h1>
+    <input class="search" type="text" v-model="query" placeholder="Cosa vuoi guardare...?">
     <button @click="searchAll">Search Movie</button>
-    <div>
-      <ul>
-        <li v-for="film in movies" :key="film.id">
-          <h3>{{film.original_title}}</h3>
-          <img :src="`${UriImg}${film.poster_path}`" alt="">
-          <p>{{film.title}}</p>
-          <p><img src="./it.png" alt=""></p>
-          <p>{{film.vote_average}}</p>
-        </li>
-      </ul>
-
-      <ul>
-        <li v-for="series in serie" :key="series.id">
-          <h3>{{series.original_name}}</h3>
-          <img :src="`${UriImg}${series.poster_path}`" alt="">
-          <p>{{series.name}}</p>
-          <p><img src="./it.png" alt=""></p>
-          <p>{{series.vote_average}}</p>
-        </li>
-      </ul>
-
-    </div>
-
   </div>
 </template>
   
@@ -35,6 +13,7 @@ export default {
   data() {
     return {
       query: "",
+
 
     }
   },
@@ -60,24 +39,13 @@ export default {
       this.searchTv()
       this.searchMovies()
 
-    }
+    },
+    
   },
 
-  computed: {
-    movies() {
-      return state.movies
-
-
-    },
-
-    serie() {
-      return state.tv
-    },
-    UriImg() {
-      return state.imgUri
-    }
-  },
-
+  
+ 
+  
 }
 console.log(state.imgUri)
 </script>
