@@ -2,37 +2,42 @@
   <div class="container">
     <ul class="card">
       <li v-for="film in movies" :key="film.id">
-        <img :src="`${UriImg}${film.poster_path}`" alt="">
-        <p>Titolo: {{film.title}}</p>
-        <h3>Titolo originale: {{film.original_title}}</h3>
-        <p><img src="./it.png" alt=""></p>
-        <p>Voto: {{roundedValue(film.vote_average)}}</p>
-        <ul class="vote">
-          <li class="star" v-for="star in roundedValue(film.vote_average) " :key="star">
-            <font-awesome-icon icon="fa-solid fa-star" />
-          </li>
-          <li>
-            <font-awesome-icon class="star" v-for="star in (5-roundedValue(film.vote_average))" :key="star + film.vote_average"
-              icon="fa-regular fa-star" />
-          </li>
-        </ul>
+        <img class="card-body" :src="`${UriImg}${film.poster_path}`" alt="">
+        <div class="overlay">
+          <p>Titolo: {{film.title}}</p>
+          <h3>Titolo originale: {{film.original_title}}</h3>
+          <p>Lingua: <img src="./it.png" alt=""></p>
+          <p class="vote_number">Voto: {{roundedValue(film.vote_average)}}</p>
+          <ul class="vote">
+            <li class="star" v-for="star in roundedValue(film.vote_average) " :key="star">
+              <font-awesome-icon icon="fa-solid fa-star" />
+            </li>
+            <li>
+              <font-awesome-icon class="star" v-for="star in (5-roundedValue(film.vote_average))"
+                :key="star + film.vote_average" icon="fa-regular fa-star" />
+            </li>
+          </ul>
+        </div>
       </li>
     </ul>
     <ul class="card">
       <li v-for="series in serie" :key="series.id">
-        <img :src="`${UriImg}${series.poster_path}`" alt="">
-        <p>Titolo: {{series.name}}</p>
-        <h3>Titolo originale: {{series.original_name}}</h3>
-        <p><img src="./it.png" alt=""></p>
-        <p>Voto: {{roundedValue(series.vote_average)}}</p>
-        <ul class="vote">
-          <li class="star" v-for="star in roundedValue(series.vote_average)" :key="star">
-            <font-awesome-icon icon="fa-solid fa-star" />
-          </li>
-          <li>
-            <font-awesome-icon class="star" v-for="star in (5-roundedValue(series.vote_average))" :key="star + series.vote_average" icon="fa-regular fa-star" />
-          </li>
-        </ul>
+        <img class="card-body" :src="`${UriImg}${series.poster_path}`" alt="">
+        <div class="overlay">
+          <p>Titolo: {{series.name}}</p>
+          <h3>Titolo originale: {{series.original_name}}</h3>
+          <p>Lingua: <img src="./it.png" alt=""></p>
+          <p class="vote_number">Voto: {{roundedValue(series.vote_average)}}</p>
+          <ul class="vote">
+            <li class="star" v-for="star in roundedValue(series.vote_average)" :key="star">
+              <font-awesome-icon icon="fa-solid fa-star" />
+            </li>
+            <li>
+              <font-awesome-icon class="star" v-for="star in (5-roundedValue(series.vote_average))"
+                :key="star + series.vote_average" icon="fa-regular fa-star" />
+            </li>
+          </ul>
+        </div>
       </li>
     </ul>
   </div>
@@ -63,28 +68,48 @@ export default {
 
   <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-  @import '../assets/style.scss';
-  ul,li{
-    list-style: none;
-  }
-  .container{
-    width: 100%;
-    background-color:$-bg-main;
-    .card{
-      display: grid;
-      grid-template-columns: repeat(4,1fr);
-    }
-    h3,p{
-      color: white;
-    }
-    .star{
-      color:$-star-color;
-    }
-    .vote{
-        display: flex;
-        flex-direction: row;
-        align-items: flex-start;
-      }
+@import '../assets/style.scss';
+
+ul,
+li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  min-height: 800px;
+  background-color: $-bg-main;
+  padding-top: 40px;
+  
+
+  .card {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    
   }
 
+  .card-body{
+    
+  }
+
+  .star {
+    color: $-star-color;
+    text-align: left;
+  }
+
+  .vote {
+    display: flex;
+  }
+
+  .vote_number {
+    display: none;
+  }
+
+  .overlay{
+    max-width: 250px;
+    color: white;
+    margin-bottom: 20px;
+  }
+}
 </style>

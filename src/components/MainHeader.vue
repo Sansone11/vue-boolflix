@@ -67,9 +67,13 @@ export default {
       background-color: white;
       border: none;
       height: 30px;
-      text-align: center;
+      
     }
     button{
+      font-weight: bold;
+    }
+    .input{
+      font-size: 13px;
       font-weight: bold;
     }
     .option{
