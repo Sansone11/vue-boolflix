@@ -1,45 +1,41 @@
 <template>
   <div class="container">
-    <ul class="card">
-      <li v-for="film in movies" :key="film.id">
-        <img class="card-body" :src="`${UriImg}${film.poster_path}`" alt="">
-        <div class="overlay">
-          <p>Titolo: {{film.title}}</p>
-          <h3>Titolo originale: {{film.original_title}}</h3>
-          <p>Lingua: <img src="./it.png" alt=""></p>
-          <p class="vote_number">Voto: {{roundedValue(film.vote_average)}}</p>
-          <ul class="vote">
-            <li class="star" v-for="star in roundedValue(film.vote_average) " :key="star">
-              <font-awesome-icon icon="fa-solid fa-star" />
-            </li>
-            <li>
-              <font-awesome-icon class="star" v-for="star in (5-roundedValue(film.vote_average))"
-                :key="star + film.vote_average" icon="fa-regular fa-star" />
-            </li>
-          </ul>
-        </div>
-      </li>
-    </ul>
-    <ul class="card">
-      <li v-for="series in serie" :key="series.id">
-        <img class="card-body" :src="`${UriImg}${series.poster_path}`" alt="">
-        <div class="overlay">
-          <p>Titolo: {{series.name}}</p>
-          <h3>Titolo originale: {{series.original_name}}</h3>
-          <p>Lingua: <img src="./it.png" alt=""></p>
-          <p class="vote_number">Voto: {{roundedValue(series.vote_average)}}</p>
-          <ul class="vote">
-            <li class="star" v-for="star in roundedValue(series.vote_average)" :key="star">
-              <font-awesome-icon icon="fa-solid fa-star" />
-            </li>
-            <li>
-              <font-awesome-icon class="star" v-for="star in (5-roundedValue(series.vote_average))"
-                :key="star + series.vote_average" icon="fa-regular fa-star" />
-            </li>
-          </ul>
-        </div>
-      </li>
-    </ul>
+    <div class="card" v-for="film in movies" :key="film.id">
+      <img :src="`${UriImg}${film.poster_path}`" alt="">
+      <div class="overlay">
+        <p>Titolo: {{film.title}}</p>
+        <h3>Titolo originale: {{film.original_title}}</h3>
+        <p>Lingua: <img src="./it.png" alt=""></p>
+        <p class="vote_number">Voto: {{roundedValue(film.vote_average)}}</p>
+        <ul class="vote">
+          <li class="star" v-for="star in roundedValue(film.vote_average) " :key="star">
+            <font-awesome-icon icon="fa-solid fa-star" />
+          </li>
+          <li>
+            <font-awesome-icon class="star" v-for="star in (5-roundedValue(film.vote_average))"
+              :key="star + film.vote_average" icon="fa-regular fa-star" />
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="card" v-for="series in serie" :key="series.id">
+      <img :src="`${UriImg}${series.poster_path}`" alt="">
+      <div class="overlay">
+        <p>Titolo: {{series.name}}</p>
+        <h3>Titolo originale: {{series.original_name}}</h3>
+        <p>Lingua: <img src="./it.png" alt=""></p>
+        <p class="vote_number">Voto: {{roundedValue(series.vote_average)}}</p>
+        <ul class="vote">
+          <li class="star" v-for="star in roundedValue(series.vote_average)" :key="star">
+            <font-awesome-icon icon="fa-solid fa-star" />
+          </li>
+          <li>
+            <font-awesome-icon class="star" v-for="star in (5-roundedValue(series.vote_average))"
+              :key="star + series.vote_average" icon="fa-regular fa-star" />
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
   
@@ -81,21 +77,18 @@ li {
   min-height: 800px;
   background-color: $-bg-main;
   padding-top: 40px;
-  
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 
-  .card {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    
-  }
-
-  .card-body{
-    
-  }
 
   .star {
     color: $-star-color;
     text-align: left;
+  }
+
+  .card {
+    position: relative;
+
   }
 
   .vote {
@@ -106,10 +99,19 @@ li {
     display: none;
   }
 
-  .overlay{
-    max-width: 250px;
+  .overlay {
+    display: none;
     color: white;
-    margin-bottom: 20px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba($color: #000000, $alpha: 0.5);
+    width: 342px;
+  }
+  .card:hover .overlay {
+    display: block;
   }
 }
 </style>
