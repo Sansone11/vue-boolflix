@@ -81,25 +81,29 @@ li {
   grid-template-columns: repeat(3, 1fr);
 
 
-  .star {
+  .star{
     color: $-star-color;
-    text-align: left;
+    text-align: center;
   }
 
   .card {
     position: relative;
+    width: 342px;
 
   }
 
-  .vote {
-    display: flex;
-  }
+   .vote {
+     display: flex;
+     justify-content: center;
+   }
 
   .vote_number {
     display: none;
   }
 
   .overlay {
+    padding-top: 10rem;
+    text-align: center;
     display: none;
     color: white;
     position: absolute;
